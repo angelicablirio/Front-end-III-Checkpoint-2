@@ -7,7 +7,12 @@
 }
 
 .favButton{
-  width: 100%;
+  border: none;
+  width: 80%;
+  border-radius: 6px;
+  padding: 6px 12px;
+  margin-bottom: 8px;
+  background-color: #d6d6d6;
 }
 
 .card:hover{
