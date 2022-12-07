@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { useEffect } from "react";
 import ScheduleFormModal from "../ScheduleFormModal/ScheduleFormModal";
 import styles from "./DetailCard.module.css";
 
 const DetailCard = (props) => {
+
+  const [dentista, setDentista] = useState([]);
 
   const matricula  = props.data
 
@@ -13,6 +16,7 @@ const DetailCard = (props) => {
         response.json().then(
           dentistDetails => {
             console.log(dentistDetails)
+            setDentista(dentistDetails)
           }
         )
       }
@@ -22,7 +26,7 @@ const DetailCard = (props) => {
 
   return (
     <>
-      <h1>Detail about Dentist {props.nome} </h1>
+      <h1>Detail about Dentist {dentista.nome} </h1>
       <section className="card col-sm-12 col-lg-6 container">
         {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
@@ -38,12 +42,12 @@ const DetailCard = (props) => {
           </div>
           <div className="col-sm-12 col-lg-6">
             <ul className="list-group">
-              <li className="list-group-item">Nome: {props.nome}</li>
+              <li className="list-group-item">Nome: {dentista.nome}</li>
               <li className="list-group-item">
-                Sobrenome: {props.sobrenome}
+                Sobrenome: {dentista.sobrenome}
               </li>
               <li className="list-group-item">
-                Usuário: {props.usuario.username}
+                Usuário: {dentista.usuario.username}
               </li>
             </ul>
             <div className="text-center">
