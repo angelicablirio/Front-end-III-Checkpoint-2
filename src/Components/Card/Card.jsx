@@ -13,7 +13,7 @@ const Card = (props) => {
           alt="doctor placeholder"
         />
         <div className={`card-body ${styles.CardBody}`}>
-          <a href={`/dentist/MatriculaDoDentista`}>
+          <a href={`detail/${props.item.matricula}`}>
             <h5 className={`card-title ${styles.title}`}>{props.item.nome}</h5>
           </a>
         </div>

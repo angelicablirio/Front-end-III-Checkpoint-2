@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Card from "../Components/Card";
+import Card from "../Components/Card/Card";
 
 const Home = () => {
 
@@ -20,19 +20,19 @@ const Home = () => {
 
   const checkIfIsFavorite = () => {
     if(favorite){
-      return "❌ Unfavorite your Doc"
+      return "❌ Desfavoritar"
     }else{
-      return "⭐ Favorite your Doc"
+      return "⭐ Favoritar"
       
     } 
   }
 
   const handleToggleFavorite = () => {
     if(favorite){
-      alert("Dentist removed successfully")
+      alert("Dentista removido com sucesso")
       setFavorite(false)
     }else{
-      alert("Dentist added successfully")
+      alert("Dentista adicionado com sucesso")
       setFavorite(true)
     }
   };
