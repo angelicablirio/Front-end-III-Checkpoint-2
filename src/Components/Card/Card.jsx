@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
 
 const Card = (props) => {
@@ -13,9 +14,9 @@ const Card = (props) => {
           alt="doctor placeholder"
         />
         <div className={`card-body ${styles.CardBody}`}>
-          <a href={`detail/${props.item.matricula}`}>
+          <Link to={`/detail`}>
             <h5 className={`card-title ${styles.title}`}>{props.item.nome}</h5>
-          </a>
+          </Link>
         </div>
         <div>
           <p>{props.item.usuario.username}</p>
