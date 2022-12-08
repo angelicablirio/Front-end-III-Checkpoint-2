@@ -6,14 +6,23 @@ const LoginForm = () => {
 
   const [nameUser, setNameUser] = useState('')
   const [passwordUser, setPasswordUser] = useState('')
+  const [formularioErro, setFormularioErro] = useState(false)
+
+  const validateName = (nameUser) => {
+    return nameUser.length >= 5 ? nameUser : false
+  }
+
+  const validatePassword = (passwordUser) => {
+    return /^(?=.*[0-9])(?=.*[a-z]).{8,12}$/i.test(passwordUser);
+  }
 
   const navigate = useNavigate()
-
   const redirect = () =>{
     navigate('/home')
   }
 
   const handleSubmit = (e) => {
+
     e.preventDefault()
   
     let userLogin = {
@@ -30,8 +39,12 @@ const LoginForm = () => {
       body: JSON.stringify(userLogin),
       headers: requestHeaders
     }
-  
-    fetch('https://dhodonto.ctdprojetos.com.br/auth', requestConfig)
+
+    if(!validateName(nameUser) || !validatePassword(passwordUser)){
+           setFormularioErro(true)
+      } else {
+
+        fetch('https://dhodonto.ctdprojetos.com.br/auth', requestConfig)
   
      .then(response =>{
       if(response.ok) {
@@ -42,7 +55,6 @@ const LoginForm = () => {
           localStorage.setItem('token', JSON.stringify(dataToken))
           setTimeout(()=>{
             redirect()
-
           }, 2000)
       })
     }
@@ -50,7 +62,11 @@ const LoginForm = () => {
       alert('Erro ao logar, por favor confira seus dados')
     }
     })
+      setFormularioErro(false)
+    }
   };
+
+  
 
   return (
     <>
@@ -78,6 +94,11 @@ const LoginForm = () => {
               onChange={(e) => setPasswordUser(e.target.value)}
               required
             />
+            {
+              formularioErro ? (
+                <span>Verifique suas informações novamente</span>
+              ) : null
+            }
             <button className="btn btn-primary" type="submit">
               Send
             </button>

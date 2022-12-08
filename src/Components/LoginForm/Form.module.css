@@ -13,3 +13,9 @@
 .inputSpacing+.inputSpacing{
   margin: 1rem 0;
 }
+
+span{
+  margin-top: 4px;
+  margin-bottom: 8px;
+  color: #e92929;
+}

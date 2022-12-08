@@ -4,8 +4,6 @@ import styles from "./Navbar.module.css";
 
 const Navbar = () => {
 
-
-
   const [logged, setLogged] = useState(false)
   const getToken = localStorage.getItem('token')
 
@@ -21,8 +19,10 @@ const Navbar = () => {
 
     }
     if(logged){
+      //se o usuário estiver logado retorna este link, que ao clicar limpa o localStorage e coloca o login como false
       return <Link className="nav-link" to={"/"} onClick={() => logout()}>Logout</Link> 
     } else {
+      //se o usuário não estiver logado retorna este link, que ao clicar está mudando o login para true, mas precisamos fazer alguma validação antes pois é preciso primeiro validar o envio das informações para depois mudar o usuário para logado
       return <Link className="nav-link" to={"/login"} onClick={() => login()}>Login</Link> 
     }
 
