@@ -19,7 +19,6 @@ const LoginForm = () => {
       username: nameUser,
       password: passwordUser
     }
-    console.log(userLogin)
   
     let requestHeaders = {
       'Content-Type': 'application/json'

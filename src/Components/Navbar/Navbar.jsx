@@ -2,6 +2,11 @@ import styles from "./Navbar.module.css";
 
 const Navbar = () => {
 
+  
+  const tokenUser = localStorage.getItem('token')
+
+  console.log(tokenUser)
+
   return (
     <header className="sticky-top">
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
@@ -46,7 +51,7 @@ const Navbar = () => {
                 O botão de logout deverá ser testado darkmode
                 se sim, btn-dark, se não, btn-light */}
                 <a className="nav-link" href="/login">
-                  Login
+                  {/* {if(tokenUser =! null )} */}
                 </a>
               </li>
               <li className={`nav-item`}>
