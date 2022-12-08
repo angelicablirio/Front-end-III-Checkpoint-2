@@ -25,8 +25,8 @@ function App() {
         element:<Detail />,
       }
     ],
-    }
-  ]);
+  }
+]);
 
   return (
     <RouterProvider router={appRouter} />
