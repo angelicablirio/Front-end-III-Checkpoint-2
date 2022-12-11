@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../../Hooks/useTheme";
 import styles from "./Form.module.css";
 
 const LoginForm = () => {
@@ -66,19 +67,19 @@ const LoginForm = () => {
     }
   };
 
-  
+  const { theme } = useTheme()
 
   return (
     <>
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar o css correto */}
       <div
-        className={`text-center card container ${styles.card}`}
+        className={`text-center card container ${theme} ${styles.card}`}
       >
-        <div className={`card-body ${styles.CardBody}`}>
+        <div className={`card-body  ${styles.CardBody}`}>
           <form onSubmit={handleSubmit}>
             <input
-              className={`form-control ${styles.inputSpacing}`}
+              className={`form-control  ${styles.inputSpacing}`}
               placeholder="Login"
               name="login"
               value={nameUser}

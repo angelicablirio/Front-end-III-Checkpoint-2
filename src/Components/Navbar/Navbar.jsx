@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTheme } from "../../Hooks/useTheme";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
@@ -27,16 +28,29 @@ const Navbar = () => {
     }
 
   }
+  const { theme, changeTheme } = useTheme()
+
+  const themeToggleButton = () => {
+    if(theme === 'dark'){
+
+      return <Link className={`btn btn-${theme}${styles.btnStyle}`} onClick={() =>changeTheme('light')}>🌙</Link>
+  
+    } else {
+
+      return <Link className={`btn btn-${theme}${styles.btnStyle}`} onClick={() =>changeTheme('dark')}>☀</Link>
+
+    }
+  }
 
   return (
     <header className="sticky-top">
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
         // está em dark mode e deverá utilizar navbar-dark bg-dark ou navbar-light bg-light*/}
       <nav
-        className={`navbar navbar-expand-sm navbar-light bg-light`}
+        className={`navbar navbar-expand-sm navbar-${theme} bg-${theme}`}
         aria-label="Third navbar example"
       >
-        <div className="container">
+        <div className={`container`}>
           {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
           <a className={`navbar-brand ${styles.navbarBrand}`} href="/home">
             DH Odonto
@@ -64,6 +78,11 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className={`nav-item ${styles.navBarLink}`}>
+                <Link className="nav-link" to={"/Schedule"}>
+                  Schedule
+                </Link>
+              </li>
+              <li className={`nav-item ${styles.navBarLink}`}>
                 {/* Se o usuário estiver logado, deverá aparecer um botão de logout
                 que vai apagar o token do localstorage.
                 Se o usuário estiver deslogado, um link fará um redirecionamento, com react-router,
@@ -72,14 +91,15 @@ const Navbar = () => {
                 se sim, btn-dark, se não, btn-light */}
                 {handleToggleButton()}
               </li>
+
               <li className={`nav-item`}>
                 {/* Ao ser clicado, esse botão mudará a aplicação para dark mode ou light mode.
                  Lembre-se de usar um estado no contexto para fazer essa alteração.
                  Na linha seguinte deverá ser feito um teste se a aplicação
                  está em dark mode e deverá utilizar o icone ☀ ou 🌙 e btn-dark ou btn-light*/}
-                <button className={`btn btn-light${styles.btnStyle}`}>
-                  ☀ 🌙
-                </button>
+                 {themeToggleButton()}
+              
+                
               </li>
             </ul>
           </div>

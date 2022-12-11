@@ -1,8 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "./Components/MainLayout/MainLayout";
+import { ThemeProvider } from "./Hooks/useTheme";
 import Detail from "./Routes/Detail";
 import Home from "./Routes/Home";
 import Login from "./Routes/Login";
+import Schedule from "./Routes/Schedule";
 
 
 function App() {
@@ -23,13 +25,19 @@ function App() {
       {
         path: 'detail',
         element:<Detail />,
+      },
+      {
+        path: 'schedule',
+        element:<Schedule />,
       }
     ],
     }
   ]);
 
   return (
-    <RouterProvider router={appRouter} />
+    <ThemeProvider>
+      <RouterProvider router={appRouter} />
+    </ThemeProvider>
   );
 }
 
