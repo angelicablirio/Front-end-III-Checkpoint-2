@@ -44,7 +44,8 @@ const Home = () => {
       <div className="card-grid container">
         {dentistas.map((data, index) => (
           <Card 
-            key={index} 
+            {...dentistas}
+            key={dentistas.matricula}
             item={data}
             handleToggleFavorite={handleToggleFavorite}
             checkIfIsFavorite={checkIfIsFavorite}
