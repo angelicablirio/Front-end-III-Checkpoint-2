@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ScheduleFormModal from "../ScheduleFormModal/ScheduleFormModal";
 import styles from "./DetailCard.module.css";
 import { useParams } from "react-router-dom";
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "../../Hooks/useTheme";
 
 const DetailCard = () => {
 

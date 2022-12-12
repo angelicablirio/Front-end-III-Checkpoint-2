@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "./Components/MainLayout/MainLayout";
-import { ThemeProvider } from "./hooks/useTheme";
+import { ThemeProvider } from "./Hooks/useTheme";
 import Detail from "./Routes/Detail";
 import Home from "./Routes/Home";
 import Login from "./Routes/Login";
