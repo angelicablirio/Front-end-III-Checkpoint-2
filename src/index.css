@@ -48,8 +48,21 @@ form{
   margin: 0 auto;
 }
 
-.btn-light{
-  background-color: rgb(214, 214, 214);
+.btn {
+  background-color: #212529
+}
+
+.button-light{
+  background-color: #d6d6d6;
+}
+
+.button-dark{
+  background-color: #212529;
+  color: #d6d6d6;
+}
+
+.btn:hover{
+  border: 2px solid rgb(173, 171, 171);
 }
 
 .card-grid{

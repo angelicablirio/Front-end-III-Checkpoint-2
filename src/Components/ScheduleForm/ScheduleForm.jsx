@@ -1,22 +1,61 @@
-import { useContext, useEffect, useState } from "react";
-import { useTheme } from "../../Hooks/useTheme";
+import { useEffect, useState } from "react";
+import { useTheme } from "../../hooks/useTheme";
+import { getTokenLocalStorage } from "../../utils/tokenLocalStorage";
 import styles from "./ScheduleForm.module.css";
 
 const ScheduleForm = () => {
+
+  const [dentistList, setDentistList] = useState([]);
+  const [patientList, setPatientList] = useState([]);
+  const { theme } = useTheme() 
+
+
   useEffect(() => {
-    //Nesse useEffect, você vai fazer um fetch na api buscando TODOS os dentistas
-    //e pacientes e carregar os dados em 2 estados diferentes
-  }, []);
+    fetch(`https://dhodonto.ctdprojetos.com.br/dentista`)
+      .then((res) => res.json())
+      .then((dentistArray) => {
+        setDentistList(dentistArray);
+      });
+
+      fetch(`https://dhodonto.ctdprojetos.com.br/paciente`)
+      .then((res) => res.json())
+      .then((patientArray) => {
+        setPatientList(patientArray.body);
+      });
+
+}, []);
 
   const handleSubmit = (event) => {
-    //Nesse handlesubmit você deverá usar o preventDefault,
-    //obter os dados do formulário e enviá-los no corpo da requisição 
-    //para a rota da api que marca a consulta
-    //lembre-se que essa rota precisa de um Bearer Token para funcionar.
-    //Lembre-se de usar um alerta para dizer se foi bem sucedido ou ocorreu um erro
-  };
+    event.preventDefault()
 
-  const { theme } = useTheme() 
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    const token = getTokenLocalStorage();
+
+    fetch(`https://dhodonto.ctdprojetos.com.br/consulta`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          dentista: {
+            matricula: data.dentist,
+          },
+          paciente: {
+            matricula: data.patient,
+          },
+          dataHoraAgendamento: data.appointmentDate,
+        }),
+      }).then((response) => {
+        if(response.ok) {
+          alert("Consulta agendada com sucesso");
+        }
+        else{
+          alert("Ocorreu um erro no agendamento, por favor tente novamente");
+        }
+      });
+  };
 
   return (
     <>
@@ -33,10 +72,11 @@ const ScheduleForm = () => {
                 Dentist
               </label>
               <select className="form-select" name="dentist" id="dentist">
-                {/*Aqui deve ser feito um map para listar todos os dentistas*/}
-                <option key={'Matricula do dentista'} value={'Matricula do dentista'}>
-                  {`Nome Sobrenome`}
-                </option>
+            {dentistList.map((dentist) => (
+                  <option key={dentist.matricula} value={dentist.matricula}>
+                    {`${dentist.nome} ${dentist.sobrenome}`}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="col-sm-12 col-lg-6">
@@ -44,10 +84,11 @@ const ScheduleForm = () => {
                 Patient
               </label>
               <select className="form-select" name="patient" id="patient">
-                {/*Aqui deve ser feito um map para listar todos os pacientes*/}
-                <option key={'Matricula do paciente'} value={'Matricula do paciente'}>
-                  {`Nome Sobrenome`}
-                </option>
+                {patientList.map((patient) => (
+                  <option key={patient.matricula} value={patient.matricula}>
+                    {`${patient.nome} ${patient.sobrenome}`}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

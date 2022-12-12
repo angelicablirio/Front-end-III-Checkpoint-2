@@ -2,22 +2,20 @@ import { useEffect, useState } from "react";
 import ScheduleFormModal from "../ScheduleFormModal/ScheduleFormModal";
 import styles from "./DetailCard.module.css";
 import { useParams } from "react-router-dom";
+import { useTheme } from "../../hooks/useTheme";
 
 const DetailCard = () => {
+
+  const { theme } = useTheme()
   const { id } = useParams();
   const [dentist, setDentist] = useState(undefined);
 
   useEffect(() => {
-    async function fetchData() {
-      fetch(`https://dhodonto.ctdprojetos.com.br/dentista/${id}`)
+      fetch(`https://dhodonto.ctdprojetos.com.br/dentista?matricula=${id}`)
         .then((res) => res.json())
         .then((data) => {
           setDentist(data);
         });
-    }
-    fetchData();
-    //Nesse useEffect, você vai fazer um fetch na api passando o 
-    //id do dentista que está vindo do react-router e carregar os dados em algum estado
   }, [id]);
 
   return (
@@ -25,11 +23,11 @@ const DetailCard = () => {
       {dentist ? (
       <>
         <h1>Detail about Dentist {dentist?.nome}</h1>
-        <section className="card col-sm-12 col-lg-6 container">
+        <section className={`card col-sm-12 col-lg-6 container ${theme}`}>
           {/* //Na linha seguinte deverá ser feito um teste se a aplicação
           // está em dark mode e deverá utilizar o css correto */}
           <div
-            className={`card-body row`}
+            className={`card-body row ${theme === 'dark' ? 'cardDark' : ''}`}
           >
             <div className="col-sm-12 col-lg-6">
               <img
@@ -54,8 +52,7 @@ const DetailCard = () => {
                 <button
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
-                  className={`btn btn-light ${styles.button
-                    }`}
+                  className={`btn ${theme === 'dark' ? 'button-dark' : 'button-light'} ${styles.button}`}
                 >
                   Marcar consulta
                 </button>

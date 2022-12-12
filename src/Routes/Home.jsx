@@ -4,7 +4,7 @@ import Card from "../Components/Card/Card";
 
 const Home = () => {
 
-  const [dentistas, setDentistas] = useState([]);
+  const [dentists, setDentists] = useState([]);
   const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const Home = () => {
       response => {
         response.json().then(
           dentistArray => {
-            setDentistas(dentistArray)
+            setDentists(dentistArray)
           }
         )
       }
@@ -42,10 +42,10 @@ const Home = () => {
     <>
       <h1>Home</h1>
       <div className="card-grid container">
-        {dentistas.map((data, index) => (
+        {dentists.map((data) => (
           <Card 
-            {...dentistas}
-            key={dentistas.matricula}
+            {...dentists}
+            key={dentists.matricula}
             item={data}
             handleToggleFavorite={handleToggleFavorite}
             checkIfIsFavorite={checkIfIsFavorite}

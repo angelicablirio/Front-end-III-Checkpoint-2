@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useTheme } from "../../Hooks/useTheme";
+import { useTheme } from "../../hooks/useTheme";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
 
   const [logged, setLogged] = useState(false)
+  const { theme, changeTheme } = useTheme()
   const getToken = localStorage.getItem('token')
 
   console.log(getToken)
@@ -28,17 +29,13 @@ const Navbar = () => {
     }
 
   }
-  const { theme, changeTheme } = useTheme()
+
 
   const themeToggleButton = () => {
-    if(theme === 'dark'){
-
-      return <Link className={`btn btn-${theme}${styles.btnStyle}`} onClick={() =>changeTheme('light')}>🌙</Link>
-  
+    if (theme === 'light') {
+      changeTheme('dark')
     } else {
-
-      return <Link className={`btn btn-${theme}${styles.btnStyle}`} onClick={() =>changeTheme('dark')}>☀</Link>
-
+      changeTheme('light')
     }
   }
 
@@ -78,11 +75,6 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className={`nav-item ${styles.navBarLink}`}>
-                <Link className="nav-link" to={"/Schedule"}>
-                  Schedule
-                </Link>
-              </li>
-              <li className={`nav-item ${styles.navBarLink}`}>
                 {/* Se o usuário estiver logado, deverá aparecer um botão de logout
                 que vai apagar o token do localstorage.
                 Se o usuário estiver deslogado, um link fará um redirecionamento, com react-router,
@@ -97,9 +89,12 @@ const Navbar = () => {
                  Lembre-se de usar um estado no contexto para fazer essa alteração.
                  Na linha seguinte deverá ser feito um teste se a aplicação
                  está em dark mode e deverá utilizar o icone ☀ ou 🌙 e btn-dark ou btn-light*/}
-                 {themeToggleButton()}
-              
-                
+                <button
+                  className={`btn ${theme === 'dark' ? 'btn-dark' : 'btn-light'} ${styles.btnStyle}`}
+                  onClick={themeToggleButton}
+                >
+                  {theme === 'dark' ? '☀' : '🌙'}
+                </button>
               </li>
             </ul>
           </div>

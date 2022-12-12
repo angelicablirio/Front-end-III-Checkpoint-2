@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useTheme } from "../../Hooks/useTheme";
+import { useTheme } from "../../hooks/useTheme";
+import { setTokenLocalStorage } from "../../utils/tokenLocalStorage";
 import styles from "./Form.module.css";
 
 const LoginForm = () => {
@@ -8,6 +9,8 @@ const LoginForm = () => {
   const [nameUser, setNameUser] = useState('')
   const [passwordUser, setPasswordUser] = useState('')
   const [formularioErro, setFormularioErro] = useState(false)
+  const { theme } = useTheme()
+
 
   const validateName = (nameUser) => {
     return nameUser.length >= 5 ? nameUser : false
@@ -52,8 +55,7 @@ const LoginForm = () => {
         response.json()
         .then(data =>{
           alert('Usuário logado com sucesso!')
-          const dataToken = data
-          localStorage.setItem('token', JSON.stringify(dataToken))
+          setTokenLocalStorage(data.token);
           setTimeout(()=>{
             redirect()
           }, 2000)
@@ -66,8 +68,6 @@ const LoginForm = () => {
       setFormularioErro(false)
     }
   };
-
-  const { theme } = useTheme()
 
   return (
     <>

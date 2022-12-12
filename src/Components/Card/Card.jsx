@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import { useTheme } from "../../Hooks/useTheme";
+import { useTheme } from "../../hooks/useTheme";
 import styles from "./Card.module.css";
 
 const Card = (props) => {
 
   const { theme } = useTheme()
+  
   return (
     <>
       {/* //Na linha seguinte deverá ser feito um teste se a aplicação
@@ -16,7 +17,7 @@ const Card = (props) => {
           alt="doctor placeholder"
         />
         <div className={`card-body ${styles.CardBody}`}>
-          <Link to={`/detail`}>
+          <Link to={`/dentist/${props.item.matricula}`}>
             <h5 className={`card-title ${styles.title}`}>{props.item.nome}</h5>
           </Link>
         </div>
