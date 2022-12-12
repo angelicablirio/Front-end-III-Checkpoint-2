@@ -41,17 +41,14 @@ const Navbar = () => {
 
   return (
     <header className="sticky-top">
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar navbar-dark bg-dark ou navbar-light bg-light*/}
       <nav
         className={`navbar navbar-expand-sm navbar-${theme} bg-${theme}`}
         aria-label="Third navbar example"
       >
         <div className={`container`}>
-          {/* Ao clicar, o usuário deve ser redirecionado a home, com react-router */}
-          <a className={`navbar-brand ${styles.navbarBrand}`} href="/home">
+          <Link className={`navbar-brand ${styles.navbarBrand}`} to={"/home"}>
             DH Odonto
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -85,10 +82,6 @@ const Navbar = () => {
               </li>
 
               <li className={`nav-item`}>
-                {/* Ao ser clicado, esse botão mudará a aplicação para dark mode ou light mode.
-                 Lembre-se de usar um estado no contexto para fazer essa alteração.
-                 Na linha seguinte deverá ser feito um teste se a aplicação
-                 está em dark mode e deverá utilizar o icone ☀ ou 🌙 e btn-dark ou btn-light*/}
                 <button
                   className={`btn ${theme === 'dark' ? 'btn-dark' : 'btn-light'} ${styles.btnStyle}`}
                   onClick={themeToggleButton}

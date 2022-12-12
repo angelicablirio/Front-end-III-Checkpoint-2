@@ -59,8 +59,6 @@ const ScheduleForm = () => {
 
   return (
     <>
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
       <div
         className={`text-center container ${theme}}`
         }
@@ -106,10 +104,8 @@ const ScheduleForm = () => {
             </div>
           </div>
           <div className={`row ${styles.rowSpacing}`}>
-            {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
             <button
-              className={`btn btn-${theme} ${styles.button}`}
+              className={`btn ${theme === 'dark' ? 'button-dark' : 'button-light'} ${styles.button}`}
               type="submit"
             >
               Schedule

@@ -4,7 +4,6 @@ import { ThemeProvider } from "./hooks/useTheme";
 import Detail from "./Routes/Detail";
 import Home from "./Routes/Home";
 import Login from "./Routes/Login";
-import Schedule from "./Routes/Schedule";
 
 
 function App() {
@@ -18,18 +17,14 @@ function App() {
           path: 'home',
           element:<Home />,
       },
-      {
-        path: 'login',
-        element:<Login />,
-      },
-      {
-        path: 'dentist/:id',
-        element:<Detail />,
-      },
-      {
-        path: 'schedule',
-        element:<Schedule />,
-      }
+        {
+          path: 'login',
+          element:<Login />,
+        },
+        {
+          path: 'dentist/:id',
+          element:<Detail />,
+        }
     ],
     }
   ]);

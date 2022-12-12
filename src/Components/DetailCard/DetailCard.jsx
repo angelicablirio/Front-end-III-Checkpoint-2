@@ -22,10 +22,8 @@ const DetailCard = () => {
     <>
       {dentist ? (
       <>
-        <h1>Detail about Dentist {dentist?.nome}</h1>
+        <h1>Detalhes sobre o dentista {dentist?.nome}</h1>
         <section className={`card col-sm-12 col-lg-6 container ${theme}`}>
-          {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-          // está em dark mode e deverá utilizar o css correto */}
           <div
             className={`card-body row ${theme === 'dark' ? 'cardDark' : ''}`}
           >
@@ -47,8 +45,6 @@ const DetailCard = () => {
                 </li>
               </ul>
               <div className="text-center">
-                {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-                // está em dark mode e deverá utilizado o css correto */}
                 <button
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
