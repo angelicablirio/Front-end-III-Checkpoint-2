@@ -5,7 +5,6 @@ import Card from "../Components/Card/Card";
 const Home = () => {
 
   const [dentists, setDentists] = useState([]);
-  const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
     fetch(`https://dhodonto.ctdprojetos.com.br/dentista`).then(
@@ -19,25 +18,6 @@ const Home = () => {
     )
   }, []);
 
-  const checkIfIsFavorite = () => {
-    if(favorite){
-      return "❌ Desfavoritar"
-    }else{
-      return "⭐ Favoritar"
-      
-    } 
-  }
-
-  const handleToggleFavorite = () => {
-    if(favorite){
-      alert("Dentista removido com sucesso")
-      setFavorite(false)
-    }else{
-      alert("Dentista adicionado com sucesso")
-      setFavorite(true)
-    }
-  };
-
   return (
     <>
       <h1>Home</h1>
@@ -47,8 +27,6 @@ const Home = () => {
             {...dentists}
             key={data.matricula}
             item={data}
-            handleToggleFavorite={handleToggleFavorite}
-            checkIfIsFavorite={checkIfIsFavorite}
           />
         )  
         )}

@@ -1,16 +1,37 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../../Hooks/useTheme";
 import styles from "./Card.module.css";
 
 const Card = (props) => {
 
-  const { theme } = useTheme()
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark" || false;
+  const [favorite, setFavorite] = useState(false);
+
+  const checkIfIsFavorite = () => {
+    if(favorite){
+      return "❌ Desfavoritar"
+    }else{
+      return "⭐ Favoritar"
+      
+    } 
+  }
+
+  const handleToggleFavorite = (e) => {
+    e.preventDefault()
+    if(favorite){
+      alert("Dentista removido com sucesso")
+      setFavorite(false)
+    }else{
+      alert("Dentista adicionado com sucesso")
+      setFavorite(true)
+    }
+  };
   
   return (
     <>
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
-      <div className={`card ${theme}`}>
+      <div  className={`card ${isDarkMode ? styles.cardDark : ""}`}>
         <img
           className="card-img-top"
           src="/images/doctor.jpg"
@@ -23,7 +44,12 @@ const Card = (props) => {
         </div>
         <div>
           <p>{props.item.usuario.username}</p>
-          <button className={styles.favButton} onClick={() => props.handleToggleFavorite()}>{props.checkIfIsFavorite()}</button>
+          <button
+            className={`btn ${isDarkMode ? 'button-dark' : 'button-light'} ${styles.buttonFav}`} 
+            onClick={(e) => handleToggleFavorite(e)}
+            >
+            {checkIfIsFavorite()}
+          </button>
         </div>
       </div>
     </>

@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "./Components/MainLayout/MainLayout";
+import { AuthProvider } from "./Hooks/useAuthContext";
 import { ThemeProvider } from "./Hooks/useTheme";
 import Detail from "./Routes/Detail";
 import Home from "./Routes/Home";
@@ -31,7 +32,9 @@ function App() {
 
   return (
     <ThemeProvider>
-      <RouterProvider router={appRouter} />
+      <AuthProvider>
+        <RouterProvider router={appRouter} />
+      </AuthProvider>
     </ThemeProvider>
   );
 }

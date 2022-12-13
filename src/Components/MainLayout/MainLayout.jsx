@@ -7,11 +7,12 @@ import Navbar from "../Navbar/Navbar";
 
 function MainLayout() {
 
- const { theme } = useTheme()  
+ const { theme } = useTheme();
+ const isDarkMode = theme === "dark" || false;  
 
   return (
     <>
-      <div className={`app ${theme}`}>
+      <div className={`app ${isDarkMode ? "dark" : "light"}`}>
         <Navbar />
         <main>
           <Outlet />

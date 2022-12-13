@@ -6,7 +6,8 @@ import { useTheme } from "../../Hooks/useTheme";
 
 const DetailCard = () => {
 
-  const { theme } = useTheme()
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark" || false;
   const { id } = useParams();
   const [dentist, setDentist] = useState(undefined);
 
@@ -25,7 +26,7 @@ const DetailCard = () => {
         <h1>Detalhes sobre o dentista {dentist?.nome}</h1>
         <section className={`card col-sm-12 col-lg-6 container ${theme}`}>
           <div
-            className={`card-body row ${theme === 'dark' ? 'cardDark' : ''}`}
+            className={`card-body row ${isDarkMode ? styles.cardDark : ""}`}
           >
             <div className="col-sm-12 col-lg-6">
               <img
@@ -48,7 +49,7 @@ const DetailCard = () => {
                 <button
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
-                  className={`btn ${theme === 'dark' ? 'button-dark' : 'button-light'} ${styles.button}`}
+                  className={`btn ${isDarkMode ? 'btn-dark' : 'button-light'} ${styles.button}`}
                 >
                   Marcar consulta
                 </button>

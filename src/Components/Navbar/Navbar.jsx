@@ -1,36 +1,24 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../Hooks/useAuthContext";
 import { useTheme } from "../../Hooks/useTheme";
-import { getTokenLocalStorage } from "../../utils/tokenLocalStorage";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
 
-  const { theme, changeTheme } = useTheme()
-  const getToken = getTokenLocalStorage()
+  const { theme, changeTheme } = useTheme();
+  const isDarkMode = theme === "dark" || false;
+  const { authState } = useAuthContext();
 
+  const navigate = useNavigate()
+  const redirect = () =>{
+    navigate('/')
+  };
 
   const logout = () => {
+    redirect()
+    window.location.reload();
     localStorage.clear()
-  }
-
-  // const handleToggleButton = () => {
-  //   const logout = () => {
-  //     localStorage.clear()
-  //     setLogged(false)
-  //   }
-
-  //   if(getToken !== null){
-  //     setLogged(true)
-  //     return <button onClick={() => logout()}>Logout</button> 
-        
-  //   }else{
-  //     setLogged(false)
-  //     return <Link className="nav-link" to={"/login"}>Login</Link> 
-  //   }
-  // }
-
+  };
 
   const themeToggleButton = () => {
     if (theme === 'light') {
@@ -38,12 +26,12 @@ const Navbar = () => {
     } else {
       changeTheme('light')
     }
-  }
+  };
 
   return (
     <header className="sticky-top">
       <nav
-        className={`navbar navbar-expand-sm navbar-${theme} bg-${theme}`}
+        className={`navbar navbar-expand-sm ${isDarkMode ? "navbar-dark bg-dark" : "navbar-light bg-light"}`}
         aria-label="Third navbar example"
       >
         <div className={`container`}>
@@ -73,19 +61,19 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className={`nav-item ${styles.navBarLink}`}>
-                {/* Se o usuário estiver logado, deverá aparecer um botão de logout
-                que vai apagar o token do localstorage.
-                Se o usuário estiver deslogado, um link fará um redirecionamento, com react-router,
-                ao formulário de login
-                O botão de logout deverá ser testado darkmode
-                se sim, btn-dark, se não, btn-light */}
-                <Link className="nav-link" to={"/login"}>Login</Link> 
+                {(authState.auth === '') ? 
+                  <Link className="nav-link" to={"/login"}>
+                    Login
+                  </Link> 
+                  :
+                  <button className={`btn ${theme === 'dark' ? 'button-dark' : 'button-light'}`} onClick={() => logout()}>
+                    Logout
+                  </button>
+                }
               </li>
-              <button className={`btn ${theme === 'dark' ? 'button-dark' : 'button-light'}`} onClick={() => logout()}>Logout</button> 
-
               <li className={`nav-item`}>
                 <button
-                  className={`btn ${theme === 'dark' ? 'btn-dark' : 'btn-light'} ${styles.btnStyle}`}
+                  className={`btn btnDark ${theme === 'dark' ? 'btn-dark' : 'btn-light'} ${styles.btnStyle}`}
                   onClick={themeToggleButton}
                 >
                   {theme === 'dark' ? '☀' : '🌙'}

@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../Hooks/useAuthContext";
 import { useTheme } from "../../Hooks/useTheme";
-import { setTokenLocalStorage } from "../../utils/tokenLocalStorage";
 import styles from "./Form.module.css";
 
 const LoginForm = () => {
 
-  const [nameUser, setNameUser] = useState('')
-  const [passwordUser, setPasswordUser] = useState('')
-  const [formularioErro, setFormularioErro] = useState(false)
-  const { theme } = useTheme()
+  const [nameUser, setNameUser] = useState('');
+  const [passwordUser, setPasswordUser] = useState('');
+  const [formularioErro, setFormularioErro] = useState(false);
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark" || false;
+  const { authState, changeAuth } = useAuthContext();
 
 
   const validateName = (nameUser) => {
@@ -21,9 +23,12 @@ const LoginForm = () => {
   }
 
   const navigate = useNavigate()
-  const redirect = () =>{
-    navigate('/home')
-  }
+
+  useEffect(()=>{
+    if(authState.auth !== ''){
+      navigate("/home");
+    }
+  })
 
   const handleSubmit = (e) => {
 
@@ -53,12 +58,13 @@ const LoginForm = () => {
      .then(response =>{
       if(response.ok) {
         response.json()
-        .then(data =>{
-          alert('Usuário logado com sucesso!')
-          setTokenLocalStorage(data.token);
-          setTimeout(()=>{
-            redirect()
-          }, 2000)
+      .then(data=>{
+        alert('Usuário logado com sucesso!')
+        changeAuth({
+          state: 'auth',
+          auth: data.token
+        })
+        navigate("/home");
       })
     }
     else {
@@ -71,10 +77,9 @@ const LoginForm = () => {
 
   return (
     <>
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
       <div
-        className={`text-center card container ${theme} ${styles.card}`}
+         className={`text-center card container ${styles.card} ${
+          isDarkMode ? styles.cardDark : ""}`}
       >
         <div className={`card-body  ${styles.CardBody}`}>
           <form onSubmit={handleSubmit}>
@@ -101,7 +106,7 @@ const LoginForm = () => {
               ) : null
             }
             <button className="btn btn-primary" type="submit">
-              Send
+              Enviar
             </button>
           </form>
         </div>

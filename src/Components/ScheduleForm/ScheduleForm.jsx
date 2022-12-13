@@ -7,7 +7,8 @@ const ScheduleForm = () => {
 
   const [dentistList, setDentistList] = useState([]);
   const [patientList, setPatientList] = useState([]);
-  const { theme } = useTheme() 
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark" || false;
 
 
   useEffect(() => {
@@ -60,8 +61,7 @@ const ScheduleForm = () => {
   return (
     <>
       <div
-        className={`text-center container ${theme}}`
-        }
+        className={`text-center container ${isDarkMode ? styles.cardDark : ""}`}
       >
         <form onSubmit={handleSubmit}>
           <div className={`row ${styles.rowSpacing}`}>
@@ -105,10 +105,12 @@ const ScheduleForm = () => {
           </div>
           <div className={`row ${styles.rowSpacing}`}>
             <button
-              className={`btn ${theme === 'dark' ? 'button-dark' : 'button-light'} ${styles.button}`}
+              className={`btn ${isDarkMode ? "button-dark" : "button-light"} ${styles.button}`}
               type="submit"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
             >
-              Schedule
+              Agendar
             </button>
           </div>
         </form>
