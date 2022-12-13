@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useTheme } from "../../Hooks/useTheme";
+import { useTheme } from "../../hooks/useTheme";
 import styles from "./Card.module.css";
 
 const Card = (props) => {

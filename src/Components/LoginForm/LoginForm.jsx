@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useTheme } from "../../Hooks/useTheme";
+import { useTheme } from "../../hooks/useTheme";
 import { setTokenLocalStorage } from "../../utils/tokenLocalStorage";
 import styles from "./Form.module.css";
 

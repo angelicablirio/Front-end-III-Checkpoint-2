@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useTheme } from "../../Hooks/useTheme";
+import { useTheme } from "../../hooks/useTheme";
+import { getTokenLocalStorage } from "../../utils/tokenLocalStorage";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
 
   const [logged, setLogged] = useState(false)
   const { theme, changeTheme } = useTheme()
-  const getToken = localStorage.getItem('token')
+  const getToken = getTokenLocalStorage()
 
   console.log(getToken)
 
@@ -17,8 +18,9 @@ const Navbar = () => {
       setLogged(false)
     }
     const login = () => {
-      setLogged(true)
-
+      if(getToken !== null){
+        setLogged(true)
+      }
     }
     if(logged){
       //se o usuário estiver logado retorna este link, que ao clicar limpa o localStorage e coloca o login como false

@@ -45,7 +45,7 @@ const Home = () => {
         {dentists.map((data) => (
           <Card 
             {...dentists}
-            key={dentists.matricula}
+            key={data.matricula}
             item={data}
             handleToggleFavorite={handleToggleFavorite}
             checkIfIsFavorite={checkIfIsFavorite}
