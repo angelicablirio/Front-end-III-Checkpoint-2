@@ -1,36 +1,35 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "../../Hooks/useTheme";
 import { getTokenLocalStorage } from "../../utils/tokenLocalStorage";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
 
-  const [logged, setLogged] = useState(false)
   const { theme, changeTheme } = useTheme()
   const getToken = getTokenLocalStorage()
 
-  console.log(getToken)
 
-  const handleToggleButton = () => {
-    const logout = () => {
-      localStorage.clear()
-      setLogged(false)
-    }
-    const login = () => {
-      if(getToken !== null){
-        setLogged(true)
-      }
-    }
-    if(logged){
-      //se o usuário estiver logado retorna este link, que ao clicar limpa o localStorage e coloca o login como false
-      return <Link className="nav-link" to={"/"} onClick={() => logout()}>Logout</Link> 
-    } else {
-      //se o usuário não estiver logado retorna este link, que ao clicar está mudando o login para true, mas precisamos fazer alguma validação antes pois é preciso primeiro validar o envio das informações para depois mudar o usuário para logado
-      return <Link className="nav-link" to={"/login"} onClick={() => login()}>Login</Link> 
-    }
-
+  const logout = () => {
+    localStorage.clear()
   }
+
+  // const handleToggleButton = () => {
+  //   const logout = () => {
+  //     localStorage.clear()
+  //     setLogged(false)
+  //   }
+
+  //   if(getToken !== null){
+  //     setLogged(true)
+  //     return <button onClick={() => logout()}>Logout</button> 
+        
+  //   }else{
+  //     setLogged(false)
+  //     return <Link className="nav-link" to={"/login"}>Login</Link> 
+  //   }
+  // }
 
 
   const themeToggleButton = () => {
@@ -80,8 +79,9 @@ const Navbar = () => {
                 ao formulário de login
                 O botão de logout deverá ser testado darkmode
                 se sim, btn-dark, se não, btn-light */}
-                {handleToggleButton()}
+                <Link className="nav-link" to={"/login"}>Login</Link> 
               </li>
+              <button className={`btn ${theme === 'dark' ? 'button-dark' : 'button-light'}`} onClick={() => logout()}>Logout</button> 
 
               <li className={`nav-item`}>
                 <button

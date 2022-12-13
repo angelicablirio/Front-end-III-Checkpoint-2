@@ -1,4 +1,4 @@
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "../../Hooks/useTheme";
 import styles from "./Footer.module.css";
 
 const Footer = () => {

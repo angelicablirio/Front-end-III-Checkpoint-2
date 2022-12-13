@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "../../Hooks/useTheme";
 import { getTokenLocalStorage } from "../../utils/tokenLocalStorage";
 import styles from "./ScheduleForm.module.css";
 

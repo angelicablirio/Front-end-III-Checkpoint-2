@@ -1,4 +1,4 @@
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../Hooks/useTheme';
 import ScheduleForm from '../ScheduleForm/ScheduleForm';
 
 const ScheduleFormModal = () => {
