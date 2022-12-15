@@ -83,7 +83,7 @@ const LoginForm = () => {
       >
         <div className={`card-body  ${styles.CardBody}`}>
           <form onSubmit={handleSubmit}>
-            <input
+            <input aria-label="login"
               className={`form-control  ${styles.inputSpacing}`}
               placeholder="Login"
               name="login"
@@ -91,7 +91,7 @@ const LoginForm = () => {
               onChange={(e) => setNameUser(e.target.value)}
               required
             />
-            <input
+            <input aria-label="password"
               className={`form-control ${styles.inputSpacing}`}
               placeholder="Password"
               name="password"
@@ -105,7 +105,7 @@ const LoginForm = () => {
                 <span>Verifique suas informações novamente</span>
               ) : null
             }
-            <button className="btn btn-primary" type="submit">
+            <button aria-label="submit-button" className="btn btn-primary" type="submit">
               Enviar
             </button>
           </form>
