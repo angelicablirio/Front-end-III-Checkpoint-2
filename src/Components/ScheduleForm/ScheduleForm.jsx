@@ -31,13 +31,13 @@ const ScheduleForm = () => {
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    const token = getTokenLocalStorage();
+    const auth = getTokenLocalStorage();
 
     fetch(`https://dhodonto.ctdprojetos.com.br/consulta`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${auth}`,
         },
         body: JSON.stringify({
           dentista: {

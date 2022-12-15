@@ -1,8 +1,8 @@
 export const getTokenLocalStorage = () => {
-  const localData = localStorage.getItem("token");
+  const localData = localStorage.getItem("auth");
   return localData ? localData : null;
 }
 
-export const setTokenLocalStorage = (token) => {
-  localStorage.setItem("token", token);
+export const setTokenLocalStorage = (auth) => {
+  localStorage.setItem("auth", auth);
 }
