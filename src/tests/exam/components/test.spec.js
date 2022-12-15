@@ -24,7 +24,7 @@ test('should show selecione o dentista, paciente e a data e hora on page', () =>
   expect(screen.getByText('Selecione o dentista, paciente e a data e hora')).toBeInTheDocument();
 });
 
-test('should show selecione o dentista, paciente e a data e hora on page', () => {
+test('should show home link in navbar', () => {
   render(<Navbar />)
   expect(screen.getByText('Home')).toBeInTheDocument();
 });
