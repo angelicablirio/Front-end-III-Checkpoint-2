@@ -1,9 +1,5 @@
 import { render } from "@testing-library/react"
 import { BrowserRouter, MemoryRouter, Routes, Route } from "react-router-dom"
-import Home from "../Routes/Home"
-import Detail from "../Routes/Detail"
-import Login from "../Routes/Login"
-import App from "../App"
 import { ThemeProvider } from "../Hooks/useTheme"
 import { AuthProvider } from "../Hooks/useAuthContext"
 

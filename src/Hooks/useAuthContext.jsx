@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useState } from "react"
-import { createContext, useContext } from "react"
+import { useState } from "react";
+import { createContext, useContext } from "react";
 import { getTokenLocalStorage } from "../utils/tokenLocalStorage";
 
 const AuthContext = createContext()
@@ -18,11 +18,11 @@ export function AuthProvider(props) {
         setAuthState({
             auth: authLocalStorage
         })
-    },[])
+    },[]);
 
     const [authState, setAuthState] = useState({
         auth: ''
-    })
+    });
 
     function changeAuth(action) {
         switch (action.state) {
@@ -35,7 +35,7 @@ export function AuthProvider(props) {
             default:
                 throw new Error('Action não encontrada')
         }
-    }
+    };
 
     return(
         <AuthContext.Provider value={{authState, changeAuth}}>

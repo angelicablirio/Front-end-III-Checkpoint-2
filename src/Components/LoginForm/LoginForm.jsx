@@ -16,19 +16,19 @@ const LoginForm = () => {
 
   const validateName = (nameUser) => {
     return nameUser.length >= 5 ? nameUser : false
-  }
+  };
 
   const validatePassword = (passwordUser) => {
     return /^(?=.*[0-9])(?=.*[a-z]).{8,12}$/i.test(passwordUser);
-  }
+  };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(()=>{
     if(authState.auth !== ''){
       navigate("/home");
     }
-  })
+  });
 
   const handleSubmit = (e) => {
 

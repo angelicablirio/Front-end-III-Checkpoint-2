@@ -1,12 +1,9 @@
-import { render, screen } from "../../test-utils"
+import { render, screen } from "../../test-utils";
 import Login from '../../../Routes/Login';
-import Card from "../../../Components/Card/Card"
-import DetailCard from "../../../Components/DetailCard/DetailCard";
 import Home from "../../../Routes/Home";
-import Detail from "../../../Routes/Detail";
 import ScheduleFormModal from "../../../Components/ScheduleFormModal/ScheduleFormModal";
 import Navbar from "../../../Components/Navbar/Navbar";
-import { fireEvent } from '@testing-library/react'
+import { fireEvent } from '@testing-library/react';
 
 
 test('should show login form', () => {
@@ -29,16 +26,16 @@ test('should show home link in navbar', () => {
   expect(screen.getByText('Home')).toBeInTheDocument();
 });
 
-test ('Fluxo login', () => {
+test ('login flow', () => {
 
-  const { getByLabelText, getByText } = render(<Login />)
-  const inputLogin = getByLabelText('login')
-  const inputPassword = getByLabelText('password')
-  const submitButton = getByLabelText('submit-button')
+  const { getByLabelText, getByText } = render(<Login />);
+  const inputLogin = getByLabelText('login');
+  const inputPassword = getByLabelText('password');
+  const submitButton = getByLabelText('submit-button');
 
-  fireEvent.change(inputLogin, { target: { value: 'dentistaAdmin' } })
-  fireEvent.change(inputPassword, { target: { value: 'admin123' } })
-  fireEvent.click(submitButton)
+  fireEvent.change(inputLogin, { target: { value: 'dentistaAdmin' } });
+  fireEvent.change(inputPassword, { target: { value: 'admin123' } });
+  fireEvent.click(submitButton);
 
   setTimeout(() => {
 
@@ -46,5 +43,6 @@ test ('Fluxo login', () => {
 
   }, 2000)
 
-})
+});
+
 

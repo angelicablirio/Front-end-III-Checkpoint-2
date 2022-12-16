@@ -3,12 +3,12 @@ import styles from "./Footer.module.css";
 
 const Footer = () => {
 
-  const { theme } = useTheme()
-  const isDarkMode = theme === "dark" || false
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark" || false;
 
   const scrollToTop = () => {
     window.scrollTo(0, 0)
-  }
+  };
 
   return (
     <footer>

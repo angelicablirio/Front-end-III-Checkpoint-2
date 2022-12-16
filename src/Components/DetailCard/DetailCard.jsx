@@ -47,6 +47,7 @@ const DetailCard = () => {
               </ul>
               <div className="text-center">
                 <button
+                  aria-label="submit-button"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
                   className={`btn ${isDarkMode ? 'btn-dark' : 'button-light'} ${styles.button}`}

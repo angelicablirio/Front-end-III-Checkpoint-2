@@ -16,7 +16,7 @@ const Card = (props) => {
       return "⭐ Favoritar"
       
     } 
-  }
+  };
 
   const handleToggleFavorite = (e) => {
     e.preventDefault()

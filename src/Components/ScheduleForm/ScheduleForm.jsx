@@ -27,7 +27,7 @@ const ScheduleForm = () => {
 }, []);
 
   const handleSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
@@ -67,7 +67,7 @@ const ScheduleForm = () => {
           <div className={`row ${styles.rowSpacing}`}>
             <div className="col-sm-12 col-lg-6">
               <label htmlFor="dentist" className="form-label">
-                Dentist
+                Dentista
               </label>
               <select className="form-select" name="dentist" id="dentist">
             {dentistList.map((dentist) => (
@@ -79,7 +79,7 @@ const ScheduleForm = () => {
             </div>
             <div className="col-sm-12 col-lg-6">
               <label htmlFor="patient" className="form-label">
-                Patient
+                Paciente
               </label>
               <select className="form-select" name="patient" id="patient">
                 {patientList.map((patient) => (
@@ -93,7 +93,7 @@ const ScheduleForm = () => {
           <div className={`row ${styles.rowSpacing}`}>
             <div className="col-12">
               <label htmlFor="appointmentDate" className="form-label">
-                Date
+                Data
               </label>
               <input
                 className="form-control"
